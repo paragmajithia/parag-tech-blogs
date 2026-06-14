@@ -1,0 +1,97 @@
+<mxGraphModel dx="1200" dy="800" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+
+    <!-- GCP outer container -->
+    <mxCell id="2" value="Google Cloud Platform" style="points=[[0,0],[0.5,0],[1,0],[1,0.5],[1,1],[0.5,1],[0,1],[0,0.5]];shape=table;startSize=20;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;fontSize=12;strokeColor=#4D90FE;fontColor=#4D90FE;fillColor=none;dashed=1;dashPattern=8 4;verticalAlign=top;" vertex="1" parent="1">
+      <mxGeometry x="80" y="30" width="700" height="820" as="geometry"/>
+    </mxCell>
+
+    <!-- Step 1: Monthly Spend trigger (ellipse) -->
+    <mxCell id="10" value="Monthly spend hits ₹1,000" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;fontStyle=1;align=center;" vertex="1" parent="1">
+      <mxGeometry x="295" y="60" width="270" height="54" as="geometry"/>
+    </mxCell>
+
+    <!-- Arrow: trigger → budget -->
+    <mxCell id="11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="10" target="20" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <!-- Step 2: Cloud Billing Budget box -->
+    <mxCell id="20" value="&lt;b&gt;☁ Cloud Billing Budget&lt;/b&gt;&lt;br/&gt;&lt;font style=&apos;font-size:11px;&apos;&gt;killswitch-budget · ₹1,000/month · 100% threshold&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=13;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="245" y="160" width="370" height="60" as="geometry"/>
+    </mxCell>
+
+    <!-- Arrow label: budget alert fires -->
+    <mxCell id="21" value="budget alert fires" style="edgeStyle=orthogonalEdgeStyle;rounded=0;fontSize=11;fontColor=#666666;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" source="20" target="30" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <!-- Step 3: Pub/Sub -->
+    <mxCell id="30" value="&lt;b&gt;📨 Cloud Pub/Sub&lt;/b&gt;&lt;br/&gt;&lt;font style=&apos;font-size:11px;&apos;&gt;topic: billing-killswitch&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="245" y="278" width="370" height="60" as="geometry"/>
+    </mxCell>
+
+    <!-- Arrow: Pub/Sub → Cloud Run -->
+    <mxCell id="31" value="triggers function" style="edgeStyle=orthogonalEdgeStyle;rounded=0;fontSize=11;fontColor=#666666;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="30" target="40" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <!-- Step 4: Cloud Run Function -->
+    <mxCell id="40" value="&lt;b&gt;⚙ Cloud Run Function&lt;/b&gt;&lt;br/&gt;&lt;font style=&apos;font-size:11px;&apos;&gt;billing-killswitch · stop_billing() · asia-south1 (Mumbai)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="245" y="396" width="370" height="60" as="geometry"/>
+    </mxCell>
+
+    <!-- Arrow: Cloud Run → Decision -->
+    <mxCell id="41" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="40" target="50" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <!-- Step 5: Decision diamond -->
+    <mxCell id="50" value="Spent &gt; limit?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=13;fontStyle=1;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="305" y="504" width="250" height="80" as="geometry"/>
+    </mxCell>
+
+    <!-- YES arrow: Decision → Billing API -->
+    <mxCell id="51" value="YES" style="edgeStyle=orthogonalEdgeStyle;rounded=0;fontSize=11;fontStyle=1;fontColor=#00AA00;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="50" target="60" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <!-- NO arrow: Decision → No action -->
+    <mxCell id="52" value="NO" style="edgeStyle=orthogonalEdgeStyle;rounded=0;fontSize=11;fontStyle=1;fontColor=#999999;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="50" target="53" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <!-- No action node -->
+    <mxCell id="53" value="No action" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;fontColor=#999999;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="650" y="524" width="110" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Step 6: Cloud Billing API -->
+    <mxCell id="60" value="&lt;b&gt;💳 Cloud Billing API&lt;/b&gt;&lt;br/&gt;&lt;font style=&apos;font-size:11px;&apos;&gt;unlinkBillingAccount() — removes billing from project&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=13;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="245" y="634" width="370" height="60" as="geometry"/>
+    </mxCell>
+
+    <!-- Arrow: Billing API → Result -->
+    <mxCell id="61" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="60" target="70" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <!-- Step 7: Result -->
+    <mxCell id="70" value="✅  Billing disabled — all services stop · zero further charges" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="220" y="744" width="420" height="54" as="geometry"/>
+    </mxCell>
+
+    <!-- IAM note (sticky note style) -->
+    <mxCell id="80" value="&lt;b&gt;IAM required&lt;/b&gt;&lt;br/&gt;&lt;font style=&apos;font-size:11px;&apos;&gt;Service account needs:&lt;br/&gt;• Billing Account Administrator (Billing IAM)&lt;br/&gt;• Project Billing Manager (Project IAM)&lt;/font&gt;" style="shape=note;whiteSpace=wrap;html=1;fillColor=#fff9c4;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1">
+      <mxGeometry x="660" y="386" width="190" height="80" as="geometry"/>
+    </mxCell>
+
+    <!-- Dashed line: IAM note → Cloud Run Function -->
+    <mxCell id="81" value="" style="edgeStyle=orthogonalEdgeStyle;dashed=1;strokeColor=#d6b656;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=open;endFill=0;" edge="1" source="80" target="40" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+  </root>
+</mxGraphModel>
