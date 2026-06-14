@@ -6,7 +6,7 @@ heroImage: '../../assets/blog/gcp-bills/gcp-bills-hero.png'
 ---
 
 
-# Stop Surprise GCP Bills with an Automatic Billing Kill Switch.
+## Cloud budgets tell you that you're in trouble. A kill switch does something about it
 
 GCP has budget alerts, but no built-in hard spending cap. Here's how to build one yourself in about 15 minutes.
 
@@ -94,6 +94,7 @@ The entire setup is done through the GCP Console. No local tooling, no Terraform
 **→ [Full deployment guide and code on GitHub](https://github.com/paragmajithia/gcp-labs/tree/main/billing-killswitch)**
 
 The repo includes:
+
 - `main.py` — the Cloud Run Function
 - `requirements.txt` — Python dependencies
 - `deploy.md` — step-by-step console setup with verification commands and a test procedure
