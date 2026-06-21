@@ -14,6 +14,8 @@ That gap is a real problem if you're running personal projects, learning Vertex 
 
 This post shows you how to close that gap: an automated kill switch that disables your GCP billing when your spend exceeds a threshold. No manual action, no inbox monitoring, no surprises.
 
+![GCP Billing Problem](../../assets/blog/gcp-bills/billing-problem.png)
+
 ---
 
 ## Why Budget Alerts Alone Are Not Enough
