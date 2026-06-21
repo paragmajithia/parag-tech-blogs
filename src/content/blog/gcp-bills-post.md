@@ -5,6 +5,20 @@ pubDate: 'Jun 14 2026'
 heroImage: '../../assets/blog/gcp-bills/gcp-bills-hero.png'
 ---
 
+## Video Walkthrough
+
+<!-- markdownlint-disable MD033 -->
+<iframe
+  width="100%"
+  height="450"
+  src="https://www.youtube.com/embed/HcsmmeNHUPo"
+  title="GCP Billing Kill Switch"
+  frameborder="0"
+  allowfullscreen>
+</iframe>
+<!-- markdownlint-enable MD033 -->
+
+---
 
 ## Cloud budgets tell you that you're in trouble. A kill switch does something about it
 
