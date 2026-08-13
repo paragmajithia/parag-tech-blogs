@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 340" width="680" height="340">
+	<defs>
+		<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0%" stop-color="#eef1f8" />
+			<stop offset="100%" stop-color="#ffffff" />
+		</linearGradient>
+		<filter id="lift" x="-40%" y="-40%" width="180%" height="180%">
+			<feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#151219" flood-opacity="0.18" />
+		</filter>
+	</defs>
+
+	<rect x="0" y="0" width="680" height="340" rx="16" fill="url(#bg)" />
+
+	<!-- Fan of seven "books" (one per summary), no cover art — a shelf metaphor, not a reproduction -->
+	<g filter="url(#lift)">
+		<g transform="translate(340,360) rotate(-33)">
+			<rect x="-32" y="-232" width="64" height="220" rx="9" fill="#60739f" />
+			<rect x="-25" y="-224" width="4" height="204" fill="#e5e9f0" opacity="0.55" />
+		</g>
+		<g transform="translate(340,360) rotate(-22)">
+			<rect x="-32" y="-238" width="64" height="226" rx="9" fill="#1a2899" />
+			<rect x="-25" y="-230" width="4" height="210" fill="#e5e9f0" opacity="0.55" />
+		</g>
+		<g transform="translate(340,360) rotate(-11)">
+			<rect x="-32" y="-246" width="64" height="234" rx="9" fill="#5c73ff" />
+			<rect x="-25" y="-238" width="4" height="218" fill="#eef1ff" opacity="0.7" />
+		</g>
+		<g transform="translate(340,360) rotate(0)">
+			<rect x="-32" y="-252" width="64" height="240" rx="9" fill="#2337ff" />
+			<rect x="-25" y="-244" width="4" height="224" fill="#eef1ff" opacity="0.8" />
+		</g>
+		<g transform="translate(340,360) rotate(11)">
+			<rect x="-32" y="-244" width="64" height="232" rx="9" fill="#8fa0ff" />
+			<rect x="-25" y="-236" width="4" height="216" fill="#ffffff" opacity="0.6" />
+		</g>
+		<g transform="translate(340,360) rotate(22)">
+			<rect x="-32" y="-236" width="64" height="224" rx="9" fill="#000d8a" />
+			<rect x="-25" y="-228" width="4" height="208" fill="#e5e9f0" opacity="0.45" />
+		</g>
+		<g transform="translate(340,360) rotate(33)">
+			<rect x="-32" y="-228" width="64" height="216" rx="9" fill="#60739f" />
+			<rect x="-25" y="-220" width="4" height="200" fill="#e5e9f0" opacity="0.55" />
+		</g>
+	</g>
+</svg>

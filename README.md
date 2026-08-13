@@ -37,7 +37,7 @@ Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page
 
 There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Posts live in `src/content/blog/`, retrieved via `getCollection()` and type-checked against the schema in `src/content.config.ts`. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+The `src/content/` directory contains "collections" of related Markdown and MDX documents: technical posts in `src/content/blog/` (served at `/blog/`) and non-technical content in `src/content/home/` (served at `/home/`, surfaced on the home page). Both are retrieved via `getCollection()` and type-checked against the schemas in `src/content.config.ts`. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more. For the day-to-day publishing workflow and the site's actual folder conventions, see [deploy-guide.md](deploy-guide.md).
 
 Any static assets, like images, can be placed in the `public/` directory.
 

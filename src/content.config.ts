@@ -18,4 +18,20 @@ const blog = defineCollection({
 		}),
 });
 
-export const collections = { blog };
+// Non-technical content shown on the home page (paragmajithia.com/home/<slug>).
+// Same shape as `blog` — separate collection so it stays out of /blog and the
+// Tech Blog RSS feed.
+const home = defineCollection({
+	loader: glob({ base: './src/content/home', pattern: '**/*.{md,mdx}' }),
+	schema: ({ image }) =>
+		z.object({
+			title: z.string(),
+			description: z.string(),
+			pubDate: z.coerce.date(),
+			updatedDate: z.coerce.date().optional(),
+			heroImage: z.optional(image()),
+			draft: z.boolean().optional().default(false),
+		}),
+});
+
+export const collections = { blog, home };

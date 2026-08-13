@@ -75,39 +75,63 @@ parag-tech-blogs/
 │
 ├── src/
 │   ├── content/
-│   │   └── blog/                  ← POSTS GO HERE (.md / .mdx)
-│   │       ├── gcp-bills-post.md
-│   │       ├── markdown-style-guide.md
-│   │       └── using-mdx.mdx
+│   │   ├── blog/                  ← TECHNICAL POSTS GO HERE (.md / .mdx) — served at /blog/<slug>/
+│   │   │   ├── gcp-bills-post.md
+│   │   │   ├── markdown-style-guide.md
+│   │   │   └── using-mdx.mdx
+│   │   └── home/                  ← NON-TECHNICAL CONTENT GOES HERE — served at /home/<slug>/
+│   │       └── borrowed-wisdom.md
 │   │
-│   ├── content.config.ts          ← frontmatter schema (title, description, pubDate, updatedDate, heroImage, draft)
-│   ├── consts.ts                  ← SITE_TITLE, SITE_DESCRIPTION
+│   ├── content.config.ts          ← frontmatter schema for BOTH collections (title, description, pubDate, updatedDate, heroImage, draft)
+│   ├── consts.ts                  ← SITE_TITLE, SITE_DESCRIPTION, TECH_BLOG_TITLE
 │   ├── pages/
-│   │   ├── index.astro            ← redirects straight to /blog
-│   │   ├── about.astro            ← the About page content lives here (not an external link)
-│   │   ├── blog/index.astro       ← post listing
-│   │   ├── blog/[...slug].astro   ← individual post route
-│   │   └── rss.xml.js             ← RSS feed
+│   │   ├── index.astro            ← the actual home page (non-technical landing page, lists `home` collection entries as cards)
+│   │   ├── about.astro             ← the About page content lives here (not an external link)
+│   │   ├── blog/index.astro       ← technical post listing ("Tech Blog")
+│   │   ├── blog/[...slug].astro   ← individual technical post route
+│   │   ├── home/[...slug].astro   ← individual non-technical entry route
+│   │   └── rss.xml.js             ← RSS feed (technical posts only)
 │   ├── components/                ← Header.astro, Footer.astro, etc.
-│   └── assets/                    ← images imported into posts (e.g. src/assets/blog/...)
+│   └── assets/                    ← images imported into content (e.g. src/assets/blog/..., src/assets/home/...)
 │
-├── public/                        ← static files served as-is (favicon, etc.)
+├── public/                        ← static files served as-is, unprocessed (favicon, downloadable PDFs, etc.)
 ├── astro.config.mjs                ← site config, integrations (mdx, sitemap)
 └── package.json
 ```
 
 **Rule of thumb:**
 
-- Writing a new post? → `src/content/blog/`
-- Adding an image for a post? → `src/assets/blog/<post-name>/` and `import` it in the `.md`/`.mdx` frontmatter as `heroImage`, or import inline in `.mdx`
-- Changing site title/description? → `src/consts.ts`
+- Writing a new technical post? → `src/content/blog/`, appears at `/blog/<slug>/`
+- Writing new non-technical content for the home page? → `src/content/home/`, appears at `/home/<slug>/` and auto-lists as a card on `/` — no page code to touch, same workflow as a blog post
+- Adding an image for either? → `src/assets/<collection>/<entry-name>/` and `import` it in the `.md`/`.mdx` frontmatter as `heroImage`, or import inline in `.mdx`
+- Changing site title/description or the Tech Blog label? → `src/consts.ts` (`SITE_TITLE`, `SITE_DESCRIPTION`, `TECH_BLOG_TITLE`)
 - Changing the About page? → `src/pages/about.astro`
 - Changing header/nav links? → `src/components/Header.astro`
 
-> Note: the header currently only links to **Blog** and **About** (both
-> internal pages), plus GitHub/LinkedIn icons. There is no separate "GCP
-> Labs" nav link at the moment — GCP content lives as regular posts in this
-> blog instead.
+> Header nav links to **Home** (`/`), **Tech Blog** (`/blog`), and **About**
+> (all internal pages), plus GitHub/LinkedIn icons. There is no separate "GCP
+> Labs" nav link — GCP content lives as regular posts in the Tech Blog
+> instead.
+
+### `public/` vs `src/assets/` — which one?
+
+Default to **`src/assets/`** for anything importable — mainly images referenced
+as `heroImage` in frontmatter. Astro/Vite processes these: images get resized
+and served as `.webp` via `<Image>`, and the output filename is
+content-hashed (e.g. `cover.B8xNvoBk.svg`) for cache-busting.
+
+Use **`public/`** instead when a file needs a **fixed, human-readable URL
+that never changes between builds** — because it's downloaded/shared/bookmarked
+directly rather than only ever linked to from within a page. Concretely:
+
+- `favicon.svg`, `favicon.ico` — referenced by exact path in `<head>`
+- `public/home/<entry-name>/download.pdf` — e.g. the "Borrowed Wisdom" PDF at
+  `public/home/borrowed-wisdom/download.pdf` → stable link
+  `paragmajithia.com/home/borrowed-wisdom/download.pdf`. It's organized under
+  the same `<collection>/<entry-name>/` naming as `src/assets/`, just rooted
+  in `public/` instead — this is the one deliberate exception to "everything
+  importable lives in `src/assets/`," made because a downloadable file
+  benefits more from a stable filename than from content-hash cache-busting.
 
 ---
 
@@ -163,6 +187,11 @@ git add .
 git commit -m "post: my new post title"
 git push
 ```
+
+Same workflow for non-technical content, just swap `blog` for `home` in every
+path (`src/content/home/my-new-entry.md`, `src/assets/home/<entry-name>/`,
+preview at `http://localhost:4321/`) — it'll appear as a card on the home
+page automatically.
 
 Cloudflare picks up the push, builds, and deploys automatically — live in
 roughly 60–90 seconds. Check the **Workers & Pages → your project →

@@ -1,3 +1,133 @@
 ---
-return Astro.redirect('/blog');
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+const highlights = (await getCollection('home', ({ data }) => !data.draft)).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
 ---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="intro">
+				<h1>Welcome</h1>
+				<p>
+					This is the non-technical side of the site — reading notes and other
+					things worth sharing. For technical writing on GCP, architecture, and
+					conversational AI, head to <a href="/blog">Tech Blog</a>.
+				</p>
+			</section>
+			<section class="highlights">
+				<h2>Worth a look</h2>
+				<ul class="card-grid">
+					{
+						highlights.map((entry) => (
+							<li>
+								<a href={`/home/${entry.id}/`}>
+									{entry.data.heroImage && (
+										<Image width={360} height={180} src={entry.data.heroImage} alt="" />
+									)}
+									<h3 class="title">{entry.data.title}</h3>
+									<p class="description">{entry.data.description}</p>
+									<p class="date">
+										<FormattedDate date={entry.data.pubDate} />
+									</p>
+								</a>
+							</li>
+						))
+					}
+					<!-- more cards appear automatically — just add a new file to src/content/home/ -->
+				</ul>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.intro {
+		margin-bottom: 3em;
+		padding-bottom: 2em;
+		border-bottom: 1px solid rgb(var(--gray-light));
+	}
+	.intro h1 {
+		margin-bottom: 0.4em;
+	}
+	.intro p {
+		max-width: 60ch;
+		color: rgb(var(--gray-dark));
+	}
+	.highlights h2 {
+		margin-bottom: 1em;
+	}
+	.card-grid {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2rem;
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+	.card-grid li {
+		width: calc(50% - 1rem);
+	}
+	.card-grid li a {
+		display: block;
+		padding: 1em;
+		margin: -1em;
+		border-radius: 12px;
+		transition: 0.2s ease;
+	}
+	.card-grid li a:hover {
+		background: rgba(var(--gray-light), 40%);
+		transform: translateY(-3px);
+	}
+	.card-grid li a * {
+		text-decoration: none;
+		transition: 0.2s ease;
+	}
+	.card-grid li img {
+		margin-bottom: 0.75rem;
+		border-radius: 12px;
+	}
+	.card-grid li a:hover img {
+		box-shadow: var(--box-shadow);
+	}
+	.title {
+		margin: 0 0 0.3rem 0;
+		color: rgb(var(--black));
+		line-height: 1.2;
+	}
+	.description {
+		margin: 0 0 0.4rem 0;
+		color: rgb(var(--gray-dark));
+		font-size: 0.9em;
+	}
+	.date {
+		margin: 0;
+		color: rgb(var(--gray));
+		font-size: 0.85em;
+	}
+	.card-grid li a:hover .title {
+		color: rgb(var(--accent));
+	}
+	@media (max-width: 720px) {
+		.card-grid {
+			gap: 1.5em;
+		}
+		.card-grid li {
+			width: 100%;
+		}
+	}
+</style>
