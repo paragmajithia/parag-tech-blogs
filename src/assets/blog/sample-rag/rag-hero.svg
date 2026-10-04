@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Society documents, retrieved context, grounded answers</title>
+  <desc id="desc">A visual summary of a retrieval-augmented generation demo, from society documents through a vector index to a cited AI answer.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#101c35"/>
+      <stop offset="1" stop-color="#1d3655"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#79e0d2"/>
+      <stop offset="1" stop-color="#55b8cb"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#07101f" flood-opacity=".28"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 0 10 5 0 10Z" fill="#79e0d2"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="630" rx="0" fill="url(#background)"/>
+  <circle cx="1080" cy="75" r="190" fill="#294568" opacity=".34"/>
+  <circle cx="1120" cy="520" r="250" fill="#173e53" opacity=".38"/>
+  <path d="M0 555C210 490 300 660 520 594s320-115 680-22v58H0Z" fill="#0b172c" opacity=".48"/>
+
+  <text x="72" y="88" fill="#79e0d2" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="20" font-weight="700" letter-spacing="3">A PRACTICAL RAG DEMO</text>
+  <text x="72" y="155" fill="#f7fafc" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="47" font-weight="750">From society documents</text>
+  <text x="72" y="214" fill="#f7fafc" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="47" font-weight="750">to grounded answers</text>
+  <text x="74" y="257" fill="#b8c8dc" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="22">Extract  ·  Embed  ·  Retrieve  ·  Cite</text>
+
+  <g filter="url(#shadow)">
+    <rect x="72" y="335" width="194" height="150" rx="18" fill="#f5f8fc"/>
+    <rect x="91" y="356" width="58" height="72" rx="7" fill="#fce4e1"/>
+    <path d="M105 375h29m-29 12h29m-29 12h20" stroke="#ba625c" stroke-width="4" stroke-linecap="round"/>
+    <path d="M166 360h73v68h-73z" fill="#e0f4ef" rx="6"/>
+    <path d="M178 377h48m-48 12h48m-48 12h34" stroke="#378878" stroke-width="4" stroke-linecap="round"/>
+    <text x="169" y="458" text-anchor="middle" fill="#24354d" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" font-weight="650">PDF + spreadsheet</text>
+  </g>
+
+  <path d="M284 410h113" fill="none" stroke="url(#accent)" stroke-width="5" marker-end="url(#arrow)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="420" y="335" width="218" height="150" rx="18" fill="#e2f4f2"/>
+    <circle cx="529" cy="390" r="38" fill="#b8e7df"/>
+    <circle cx="510" cy="381" r="6" fill="#168a8b"/>
+    <circle cx="535" cy="372" r="6" fill="#168a8b"/>
+    <circle cx="552" cy="396" r="6" fill="#168a8b"/>
+    <circle cx="523" cy="407" r="6" fill="#168a8b"/>
+    <path d="m510 381 25-9 17 24-29 11z" fill="none" stroke="#168a8b" stroke-width="2"/>
+    <text x="529" y="458" text-anchor="middle" fill="#24354d" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" font-weight="650">Chroma index</text>
+  </g>
+
+  <path d="M654 410h113" fill="none" stroke="url(#accent)" stroke-width="5" marker-end="url(#arrow)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="794" y="335" width="334" height="150" rx="18" fill="#f5f8fc"/>
+    <path d="M828 365h259a13 13 0 0 1 13 13v48a13 13 0 0 1-13 13H867l-25 18v-18h-14a13 13 0 0 1-13-13v-48a13 13 0 0 1 13-13Z" fill="#dcecff"/>
+    <path d="M854 390h184m-184 17h137" stroke="#4f73a4" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="1055" cy="420" r="17" fill="#d7f0e7"/>
+    <path d="m1047 420 6 6 11-13" fill="none" stroke="#22866f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="961" y="468" text-anchor="middle" fill="#24354d" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" font-weight="650">Answer with source citations</text>
+  </g>
+
+  <text x="72" y="559" fill="#b8c8dc" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17">A small end-to-end Retrieval-Augmented Generation walkthrough</text>
+</svg>
