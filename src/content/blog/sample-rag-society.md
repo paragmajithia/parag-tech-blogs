@@ -5,6 +5,21 @@ pubDate: 'Oct 3 2026'
 heroImage: '../../assets/blog/sample-rag/rag-hero.svg'
 ---
 
+## Video Walkthrough
+
+<!-- markdownlint-disable MD033 -->
+<iframe
+  width="100%"
+  height="450"
+  src="https://www.youtube.com/embed/jjXnWhI3Cz0"
+  title="RAG Without the Mystery: A Society Documents Demo"
+  frameborder="0"
+  allowfullscreen>
+</iframe>
+<!-- markdownlint-enable MD033 -->
+
+---
+
 ## Two sample documents, one answer grounded in their contents
 
 Retrieval-Augmented Generation (RAG) is easier to understand when you can
